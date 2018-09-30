@@ -1,0 +1,25 @@
+function disableproxy()
+{
+
+	sudo bash -c 'echo PATH=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games\"> /etc/environment'
+	sudo bash -c 'echo "">/etc/apt/apt.conf.d/01proxy'
+
+
+}
+function enableproxy()
+{	
+################changing in environment
+	sudo bash -c 'echo PATH=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games\" > /etc/environment'
+	sudo bash -c 'echo Acquire::http::proxy \"http://172.25.6.6:3128\">>/etc/environment'
+	sudo bash -c 'echo Acquire::https::proxy \"https://172.25.6.6:3128\">>/etc/environment'
+	sudo bash -c 'echo Acquire::ftp::proxy \"ftp://172.25.6.6:3128\">>/etc/environment'
+	sudo bash -c 'echo Acquire::socks::proxy \"socks://172.25.6.6:3128\">>/etc/environment'
+###############changing in apt conf.d 
+	sudo bash -c 'echo Acquire::http::proxy \"http://172.25.6.6:3128\"\;>/etc/apt/apt.conf.d/01proxy'
+	sudo bash -c 'echo Acquire::https::proxy \"https://172.25.6.6:3128\"\;>>/etc/apt/apt.conf.d/01proxy'
+	sudo bash -c 'echo Acquire::ftp::proxy \"ftp://172.25.6.6:3128\"\;>>/etc/apt/apt.conf.d/01proxy'
+	sudo bash -c 'echo Acquire::socks::proxy \"socks://172.25.6.6:3128\"\;>>/etc/apt/apt.conf.d/01proxy'
+
+
+}
+
